@@ -39,8 +39,19 @@ class ControlPanel extends Panel {
       baseColor: 'yellow',
       xMargin: 10,
       listener: () => {
-        const orientation = model.barMagnet.orientationProperty.get() + Math.PI;
-        model.barMagnet.orientationProperty.set( orientation );
+        const orientation = model.laser.orientationProperty.get() + Math.PI;
+        model.laser.orientationProperty.set( orientation );
+      }
+    } );
+
+    // 'Left button' button
+    const leftButton = new TextPushButton( exampleSimStrings.leftButton, {
+      font: new PhetFont( 16 ),
+      baseColor: 'green',
+      xMargin: 10,
+      listener: () => {
+        const position = model.laser.positionProperty.get().minusXY(50, 0);
+        model.laser.positionProperty.set( position );
       }
     } );
 
@@ -55,6 +66,7 @@ class ControlPanel extends Panel {
       spacing: 10,
       children: [
         flipButton,
+        leftButton,
         resetAllButton
       ]
     } );

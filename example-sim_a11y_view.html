@@ -136,11 +136,6 @@
       font-weight: bold;
     }
 
-    .assertive {
-      background-color: pink; /* do not change color without changing the doc in "About Interactive Alerts" */
-      border-radius: .2em;
-    }
-
     /* ************SAFARI ONLY *********************** */
     .left-safari {
       display: inline-block;
@@ -184,9 +179,8 @@
         <h3>Activity log of Interactive Alerts</h3>
         <details>
           <summary>About Interactive Alerts</summary>
-          Interactive alerts (powered by aria-live) are read out as the user interacts providing a description of what
-          is happening in real-time. Alerts appear in reverse chronological order with the latest on top. In general
-          all aria-live alerts are polite, but assertive alerts are highlighted with pink.
+          Interactive alerts are read out as the user interacts providing a description of what is happening in
+          real-time. Alerts appear in reverse chronological order with the latest on top.
         </details>
         <div id='alert-copy-container' class='alert_copy_container' role='presentation'>
           <div id='polite-element-container'>
@@ -230,10 +224,10 @@
   }
 
   const noPostMessage = simulationQueryString.indexOf( 'postMessageOnLoad&postMessageOnError' ) === -1;
-  const noAccessibility = simulationQueryString.indexOf( 'supportsDescription' ) === -1;
+  const noAccessibility = simulationQueryString.indexOf( 'supportsDescriptions' ) === -1;
 
   noPostMessage && ( simulationQueryString += 'postMessageOnLoad&postMessageOnError&' );
-  noAccessibility && ( simulationQueryString += 'supportsDescription' );
+  noAccessibility && ( simulationQueryString += 'supportsDescriptions' );
 
   const repoLocale = 'example-sim_en';
   const filenameEnding = IS_BUILT ? '_phet.html' : '.html';
@@ -441,10 +435,6 @@
             const listItem = document.createElement( 'li' );
             listItem.style.opacity = 1.0;
             listItem.textContent = alertText;
-            if ( mutation.target.id.includes( 'assertive' ) ) {
-              listItem.classList.add( 'assertive' );
-            }
-
             listElement.insertBefore( listItem, listElement.children[ 0 ] );
 
             // items fade out as they get older
@@ -502,7 +492,7 @@
 
       const simFrame = document.getElementById( 'iframe' );
       const innerWindow = simFrame.contentWindow;
-      const PDOMRoot = innerWindow.phet.joist.display.pdomRootElement; // copy of the parallel DOM
+      const PDOMRoot = innerWindow.phet.joist.sim.display.accessibleDOMElement; // copy of the parallel DOM
 
       // get the alert dom elements from the iframe's inner document
       const ariaLiveElementsContainer = innerWindow.phet.joist.sim.utteranceQueue.getAriaLiveContainer();

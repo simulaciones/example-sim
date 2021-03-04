@@ -3,22 +3,35 @@
 /**
  * Model for the 'Example' screen.
  *
- * @author Chris Malley (PixelZoom, Inc.)
- * @author Sam Reid (PhET Interactive Simulations)
- * @author Steele Dalton (PhET Interactive Simulations)
+ * @author 
  */
 
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import exampleSim from '../../exampleSim.js';
-import BarMagnet from './BarMagnet.js';
+import Laser from './Laser.js';
+import Metal from './Metal.js';
+import Wall from './Wall.js';
+import Slit from './Slit.js';
 
 class ExampleModel {
 
   constructor() {
 
-    // @public {BarMagnet} initial bar magnet model element
-    this.barMagnet = new BarMagnet( new Dimension2( 262.5, 52.5 ), new Vector2( 0, 0 ), 0 );
+    // @public {Laser} initial laser model element
+    this.laser = new Laser( new Dimension2( 262.5, 252.5 ), new Vector2( 0, 0 ), 0 );
+
+    // @public {Metal} initial metal model element
+    this.metal = new Metal( new Dimension2( 262.5, 252.5 ), new Vector2( 0, 0 ), 0 );
+
+    // @public {Slit} initial slit model element
+    this.slit1 = new Slit( new Dimension2( 262.5, 252.5 ), new Vector2( 0, 0 ), 0 );
+
+    // @public {Slit} initial slit model element
+    this.slit2 = new Slit( new Dimension2( 262.5, 252.5 ), new Vector2( 0, 0 ), 0 );
+
+    // @public {Wall} initial wall model element
+    this.wall = new Wall( new Dimension2( 262.5, 252.5 ), new Vector2( 0, 0 ), 0 );
   }
 
   /**
@@ -27,7 +40,7 @@ class ExampleModel {
    * @public
    */
   reset() {
-    this.barMagnet.reset();
+    this.laser.reset();
   }
 }
 

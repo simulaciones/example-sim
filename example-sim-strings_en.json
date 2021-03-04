@@ -4,5 +4,8 @@
   },
   "flipPolarity": {
     "value": "Flip Polarity"
+  },
+  "leftButton": {
+    "value": "Left Button"
   }
 }

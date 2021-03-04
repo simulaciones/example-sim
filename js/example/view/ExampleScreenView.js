@@ -13,7 +13,10 @@ import Vector2 from '../../../../dot/js/Vector2.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import exampleSim from '../../exampleSim.js';
-import BarMagnetNode from './BarMagnetNode.js';
+import LaserNode from './LaserNode.js';
+import MetalNode from './MetalNode.js';
+import WallNode from './WallNode.js';
+import SlitNode from './SlitNode.js';
 import ControlPanel from './ControlPanel.js';
 
 class ExampleScreenView extends ScreenView {
@@ -27,11 +30,32 @@ class ExampleScreenView extends ScreenView {
       layoutBounds: new Bounds2( 0, 0, 768, 504 )
     } );
 
-    // model-view transform
-    const center = new Vector2( this.layoutBounds.width / 2, this.layoutBounds.height / 2 );
-    const modelViewTransform = ModelViewTransform2.createOffsetScaleMapping( center, 1 );
+    // laser object
+    const center = new Vector2( this.layoutBounds.width / 9, this.layoutBounds.height / 2 );
+    const laserModelViewTransform = ModelViewTransform2.createOffsetScaleMapping( center, 1 );
+    this.addChild( new LaserNode( model.laser, laserModelViewTransform ) );
 
-    this.addChild( new BarMagnetNode( model.barMagnet, modelViewTransform ) );
+    // metal object
+    const metalPosition = new Vector2( this.layoutBounds.width / 2, this.layoutBounds.height / 2 );
+    const metalModelViewTransform = ModelViewTransform2.createOffsetScaleMapping( metalPosition , 1 );  
+    this.addChild( new MetalNode( model.metal, metalModelViewTransform ) );
+
+    // slit object
+    const slitPosition1 = new Vector2( this.layoutBounds.width / 2 -5, this.layoutBounds.height / 2 );
+    const slitModelViewTransform1 = ModelViewTransform2.createOffsetScaleMapping( slitPosition1, 1 );
+    this.addChild( new SlitNode( model.slit1, slitModelViewTransform1 ) );
+
+    // slit object
+    const slitPosition2 = new Vector2( this.layoutBounds.width / 2 +5, this.layoutBounds.height / 2 );
+    const slitModelViewTransform2 = ModelViewTransform2.createOffsetScaleMapping( slitPosition2, 1 );
+    this.addChild( new SlitNode( model.slit2, slitModelViewTransform2 ) );
+    
+    // wall object
+    const wallPosition = new Vector2( this.layoutBounds.width / 2 + this.layoutBounds.width / 3, this.layoutBounds.height / 2);
+    const wallModelViewTransform = ModelViewTransform2.createOffsetScaleMapping( wallPosition , 1 );  
+    this.addChild( new WallNode( model.wall, wallModelViewTransform ) );
+    
+    // Control Panel
     this.addChild( new ControlPanel( model, {
       x: 50,
       y: 50
