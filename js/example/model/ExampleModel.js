@@ -13,6 +13,7 @@ import Laser from './Laser.js';
 import Metal from './Metal.js';
 import Wall from './Wall.js';
 import Slit from './Slit.js';
+import Ruler from './Ruler.js';
 
 class ExampleModel {
 
@@ -32,6 +33,9 @@ class ExampleModel {
 
     // @public {Wall} initial wall model element
     this.wall = new Wall( new Dimension2( 262.5, 252.5 ), new Vector2( 0, 0 ), 0 );
+
+    // @public {Ruler} initial wall model element
+    this.ruler = new Ruler( new Dimension2( 262.5, 252.5 ), new Vector2( 0, 0 ), 0 );
   }
 
   /**
